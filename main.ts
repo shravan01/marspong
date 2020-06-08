@@ -111,7 +111,6 @@ function create_right_paddle_ () {
     controller.player2.moveSprite(right_paddlleee, 0, 200)
     info.player2.setScore(0)
     info.player2.setLife(3)
-    right_paddlleee.say("P 2", 1000)
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     right_paddlleee.y += 5
@@ -135,8 +134,8 @@ function create_ballele () {
 `, SpriteKind.Ball)
     mars_ball.setFlag(SpriteFlag.StayInScreen, true)
     mars_ball.y = Math.randomRange(0, 120)
-    randomizeStartDir()
     mars_ball.setFlag(SpriteFlag.BounceOnWall, true)
+    randomizeStartPos()
 }
 sprites.onOverlap(SpriteKind.Ball, SpriteKind.rightPlayer, function (sprite, otherSprite) {
     sprite.vx = 0 - sprite.vx
@@ -169,7 +168,6 @@ a 7 7 a
     odi_left_paddleeee.setFlag(SpriteFlag.StayInScreen, true)
     info.setScore(0)
     info.setLife(3)
-    odi_left_paddleeee.say("P 1", 1000)
 }
 info.player2.onLifeZero(function () {
     game.splash("Left Player Wins")
@@ -184,7 +182,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.B.onEvent(ControllerButtonEvent.Repeated, function () {
     right_paddlleee.y += 5
 })
-function randomizeStartDir () {
+function randomizeStartPos () {
     if (Math.percentChance(50)) {
         mars_ball.vx = -50
     } else {
